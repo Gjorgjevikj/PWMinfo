@@ -1,0 +1,9 @@
+# gitignore for vMicro VisualStudio Arduino
+# Visual Studio Files
+Debug
+Release
+__vm
+.vs
+*.sln
+*.vcxproj
+*.vcxproj.filters
