@@ -185,9 +185,12 @@ float CalculatePWMDuty(Cycle *pulsesp)
 		Cycle pulses_c = *pulsesp;
 		interrupts();
 		if (pulses_c.fallTime > pulses_c.riseTime)
-			r = (pulses_c.fallTime - pulses_c.riseTime) * 100.0 / (pulses_c.fallTime - pulses_c.prevFallTime);
-		else // if (pulses_c.riseTime > pulses_c.fallTime)
-			r = (pulses_c.fallTime - pulses_c.prevRiseTime) * 100.0 / (pulses_c.riseTime - pulses_c.prevRiseTime);
+//		if (pulses_c.fallTime > pulses_c.riseTime && pulses_c.fallTime > pulses_c.riseTime)
+//			if((pulses_c.fallTime - pulses_c.riseTime) <= (pulses_c.fallTime - pulses_c.prevFallTime))
+				r = (pulses_c.fallTime - pulses_c.riseTime) * 100.0 / (pulses_c.fallTime - pulses_c.prevFallTime);
+		else //if (pulses_c.riseTime > pulses_c.fallTime && pulses_c.riseTime > pulses_c.prevRiseTime)
+//			if((pulses_c.riseTime > pulses_c.prevRiseTime) && (pulses_c.fallTime - pulses_c.prevRiseTime) <= (pulses_c.riseTime - pulses_c.prevRiseTime))
+				r = (pulses_c.fallTime - pulses_c.prevRiseTime) * 100.0 / (pulses_c.riseTime - pulses_c.prevRiseTime);
 	}
 	return r;
 }
